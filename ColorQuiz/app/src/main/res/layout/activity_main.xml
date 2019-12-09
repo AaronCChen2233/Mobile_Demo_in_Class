@@ -13,21 +13,15 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textSize="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/scoreTextViewStyle"
             android:text="Score: ">
 
         </TextView>
 
         <TextView
             android:id="@+id/score"
-            android:textSize="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:text="0"
-
-            >
+            style="@style/scoreTextViewStyle">
 
         </TextView>
 
@@ -57,21 +51,13 @@
             <Button
                 android:onClick="leftButtonClick"
                 android:id="@+id/leftButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:height="150dp"
-                android:width="150dp"/>
+                style="@style/ColorButtonStyle" />
 
             <Button
                 android:onClick="rightButtonClick"
                 android:id="@+id/rightButton"
                 android:layout_marginLeft="50dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:height="150dp"
-                android:width="150dp"/>
+                style="@style/ColorButtonStyle" />
 
         </LinearLayout>
 

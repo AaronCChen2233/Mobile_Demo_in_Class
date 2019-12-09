@@ -73,21 +73,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun leftButtonClick(view: View) {
-        if (answer == 0) {
-            /*correct*/
-            showToast("Correct!")
-            score++
-        } else {
-            /*wrong*/
-            showToast("Wrong!")
-            score--
-        }
-        scoreText.text = score.toString()
-        generatQuestion()
+        checkAnswer(0)
     }
 
     fun rightButtonClick(view: View) {
-        if (answer != 0) {
+        checkAnswer(1)
+    }
+
+    private fun checkAnswer(choose:Int) {
+        if (answer == choose) {
             /*correct*/
             showToast("Correct!")
             score++
@@ -100,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         generatQuestion()
     }
 
-    private fun showToast(message:String) {
+    private fun showToast(message: String) {
         toast?.cancel()
         toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast?.show()
