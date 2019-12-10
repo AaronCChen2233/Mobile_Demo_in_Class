@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/NameStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nameText"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/nickname_edit"
+        style="@style/NameStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/what_is_your_nickname"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:text=""/>
+
+    <Button
+        android:id="@+id/done_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/roboto"
+        android:layout_marginTop="@dimen/layout_margin"
+        android:text="@string/done"
+        android:onClick="clickHandlerFunction"/>
+
+    <TextView
+        android:id="@+id/nickname_text"
+        style="@style/NameStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:background="@color/colorAccent"
+        android:paddingBottom="@dimen/small_padding"
+        android:onClick="updateNickname"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin"
+        android:contentDescription="@string/yellow_star"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/bio_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bio"
+            style="@style/NameStyle" />
+    </ScrollView>
+
+</LinearLayout>
