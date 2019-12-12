@@ -29,7 +29,7 @@ import com.example.android.dessertclicker.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var dessertTimer: DessertTimer
     private var revenue = 0
     private var dessertsSold = 0
 
@@ -65,6 +65,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /*AppCompatActivity from FragmentActivity implements LifecycleOwner*/
+        dessertTimer = DessertTimer(this.lifecycle)
+
         Timber.i("onCreate called")
 //        Log.i("MainActivity", "onCreate called")
         // Use Data Binding to get reference to the views
@@ -87,6 +91,8 @@ class MainActivity : AppCompatActivity() {
         /*Called when the Activity is becoming visible to User
         * It can be called more than once during lifecycle
         * */
+//        dessertTimer.startTimer()
+
         Timber.i("onStart called")
     }
 
@@ -115,7 +121,9 @@ class MainActivity : AppCompatActivity() {
         * Operations that were too heavy-weight for onPause
         * For example store something
         * */
+//        dessertTimer.stopTimer()
         Timber.i("onStop called")
+
     }
 
     override fun onDestroy() {
