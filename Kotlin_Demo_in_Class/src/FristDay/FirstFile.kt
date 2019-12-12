@@ -86,9 +86,9 @@ fun test()
 //f?.invoke()
 //if have return in the lambda that return always return out of the function not the lambda
 //if want to return the lambda put return@lambdaName ex return@flatMap
-//other sul is put anonymous function inside the lambda
+//other solution is put anonymous function inside the lambda
 //can store lambda in a var but can't store function in a var
 //but can reference a function
 //var varName =::functionName
-//var re = :: isEven
+//var re = ::isEven
 //
