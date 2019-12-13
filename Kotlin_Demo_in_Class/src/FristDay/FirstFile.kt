@@ -91,4 +91,7 @@ fun test()
 //but can reference a function
 //var varName =::functionName
 //var re = ::isEven
+//Inflate
+//A idea is per app only have one activity and bunch of Fragments
+//Navigation graph
 //
