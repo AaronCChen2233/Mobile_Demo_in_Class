@@ -28,6 +28,10 @@ import androidx.databinding.DataBindingUtil
 import com.example.android.dessertclicker.databinding.ActivityMainBinding
 import timber.log.Timber
 
+const val KEY_REVENUE = "revenue_key"
+const val KEY_DESSERT_SOLD = "dessert_sold_key"
+const val KEY_TIMER_SECONDS = "timer_seconds_key"
+
 class MainActivity : AppCompatActivity() {
     private lateinit var dessertTimer: DessertTimer
     private var revenue = 0
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        /*AppCompatActivity from FragmentActivity implements LifecycleOwner*/
+        /**AppCompatActivity from FragmentActivity implements LifecycleOwner*/
         dessertTimer = DessertTimer(this.lifecycle)
 
         Timber.i("onCreate called")
@@ -77,6 +81,11 @@ class MainActivity : AppCompatActivity() {
         binding.dessertButton.setOnClickListener {
             onDessertClicked()
         }
+
+        /**Get saved information before set the TextViews*/
+        revenue = savedInstanceState?.getInt(KEY_REVENUE, 0) ?: 0
+        dessertsSold = savedInstanceState?.getInt(KEY_DESSERT_SOLD, 0) ?: 0
+        dessertTimer.secondsCount = savedInstanceState?.getInt(KEY_TIMER_SECONDS, 0) ?: 0
 
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -96,9 +105,19 @@ class MainActivity : AppCompatActivity() {
         Timber.i("onStart called")
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        /**Save information*/
+        outState?.putInt(KEY_REVENUE, revenue)
+        outState?.putInt(KEY_DESSERT_SOLD, dessertsSold)
+        outState?.putInt(KEY_TIMER_SECONDS, dessertTimer.secondsCount)
+        Timber.i("onSaveInstanceState Called")
+    }
+
     override fun onResume() {
         super.onResume()
-        /*Called when Activity will start interacting with user
+        /**Called when Activity will start interacting with user
         * running state - starts accepting user input
         * */
         Timber.i("onResume called")
@@ -106,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        /*Called when system is about to resume a previous activity
+        /**Called when system is about to resume a previous activity
         * The Activity is partly visible bt user is leaving the activity
         * For example stop the aminimation
         * */
@@ -115,7 +134,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        /*Called when the Activity is no longer visible to the user
+        /**Called when the Activity is no longer visible to the user
         * New Activity is being started, an existing one is brought in front
         * of this activity, or this one is being destroyed.
         * Operations that were too heavy-weight for onPause
@@ -128,7 +147,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        /*Final call before this Activity is destroyed
+        /**Final call before this Activity is destroyed
         * When User navigates to previous Activity, or configuration change(orientation)
         * Manually call finish() method to destroy the activity
         * and call isFinishing() method to check
@@ -139,7 +158,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        /*Called after Activity has been stopped,
+        /**Called after Activity has been stopped,
         * and started again*/
         Timber.i("onRestart called")
     }
