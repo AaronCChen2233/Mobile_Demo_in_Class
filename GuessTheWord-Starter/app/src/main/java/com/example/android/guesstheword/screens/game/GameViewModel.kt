@@ -24,10 +24,10 @@ class GameViewModel : ViewModel() {
         get() = _eventGameFinish
 
     init {
-        resetList()
-        nextWord()
         _word.value = ""
         _score.value = 0
+        resetList()
+        nextWord()
         Timber.i("GameViewModel created!")
     }
 
