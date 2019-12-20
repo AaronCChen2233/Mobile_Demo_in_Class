@@ -36,6 +36,7 @@ interface SleepDatabaseDao{
     @Query("DELETE FROM daily_sleep_quality_table")
     fun clear()
 
+    /**Actually this sql query is get recently night not really tonight*/
     @Query("SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC LIMIT 1")
     fun getTonight(): SleepNight?
 
