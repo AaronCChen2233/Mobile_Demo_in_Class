@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2019, The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,3 +16,22 @@
 
 package com.example.android.trackmysleepquality.database
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "daily_sleep_quality_table")
+data class SleepNight(
+        @PrimaryKey(autoGenerate = true)
+        var nightId: Long = 0L,
+
+        @ColumnInfo(name = "start_time_milli")
+        val startTimeMilli: Long = System.currentTimeMillis(),
+
+        @ColumnInfo(name = "end_time_milli")
+        var endTimeMilli: Long = startTimeMilli,
+
+        /**You have to initialize the sleepQuality, so set it to -1, indicating that no quality data has been collected.*/
+        @ColumnInfo(name = "quality_rating")
+        var sleepQuality: Int = -1
+)
