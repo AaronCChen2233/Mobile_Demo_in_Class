@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="name" />
+
+    <TextView
+        android:textSize="30sp"
+        android:id="@+id/heightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="height" />
+
+    <TextView
+        android:textSize="30sp"
+        android:id="@+id/massTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="mass" />
+
+</LinearLayout>
