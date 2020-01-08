@@ -94,4 +94,10 @@ fun test()
 //Inflate
 //A idea is per app only have one activity and bunch of Fragments
 //Navigation graph
-//
+//RecycleView
+//ViewHolder When user Scroll the view won't change only change the data
+//Adapter
+//Those three function should override
+//getItemCount()
+//onCreateViewHolder()
+//onBindViewHolder()
