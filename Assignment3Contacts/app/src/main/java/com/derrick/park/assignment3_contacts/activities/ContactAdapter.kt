@@ -22,10 +22,12 @@ class ContactAdapter : ListAdapter<Contact, ContactAdapter.ContactHolder>(SleepN
 
     class ContactHolder private constructor(val binding: ContactsListItemBinding) : RecyclerView.ViewHolder(binding.root){
         val name: TextView = binding.nameTextView
+        val phone :TextView = binding.phoneTextView
 
         fun bind(item: Contact) {
             binding.contact = item
             name.text = item.name.toString()
+            phone.text = item.cell.toString()
             binding.executePendingBindings()
         }
 
