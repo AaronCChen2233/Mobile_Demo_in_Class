@@ -76,7 +76,7 @@ public class Contact {
     class Location {
         @SerializedName("street")
         @Expose
-        private String street;
+        private Street street;
         @SerializedName("city")
         @Expose
         private String city;
@@ -87,7 +87,7 @@ public class Contact {
         @Expose
         private String postcode;
 
-        public String getStreet() {
+        public Street getStreet() {
             return street;
         }
 
@@ -108,5 +108,15 @@ public class Contact {
             return street + ", " + city + ", " + province + " Canada " + postcode;
         }
     }
+
+    class Street {
+        @SerializedName("number")
+        @Expose
+        private int number;
+        @SerializedName("name")
+        @Expose
+        private String name;
+    }
+
 }
 
