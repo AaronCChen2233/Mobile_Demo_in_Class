@@ -18,5 +18,14 @@
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    </FrameLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addfloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_gravity="end|bottom"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:focusable="true" />
+
+        </FrameLayout>
 </layout>

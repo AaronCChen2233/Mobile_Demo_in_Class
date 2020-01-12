@@ -4,6 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Contact {
+
+    public Contact(String fristName,String lastName, String cell) {
+        this.name = new Name(fristName,lastName);
+        this.cell = cell;
+    }
+
     @SerializedName("gender")
     @Expose
     private String gender;
@@ -48,7 +54,12 @@ public class Contact {
     /**
      * Name {first: , last: }
      */
-    class Name {
+    public class Name {
+        public Name(String first, String last) {
+            this.first = first;
+            this.last = last;
+        }
+
         @SerializedName("first")
         @Expose
         private String first;
