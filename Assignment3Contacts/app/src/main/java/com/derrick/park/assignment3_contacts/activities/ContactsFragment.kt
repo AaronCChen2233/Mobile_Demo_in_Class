@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.derrick.park.assignment3_contacts.R
 import com.derrick.park.assignment3_contacts.databinding.FragmentContactsBinding
 import com.derrick.park.assignment3_contacts.models.Contact
@@ -52,6 +53,9 @@ class ContactsFragment : Fragment() {
                     mContactList = response.body()!!.contactList
 
                     adapter.submitList(mContactList)
+
+                    val addcontact = arguments?.getParcelable<Contact>("contact")
+                    addNewContact(addcontact)
                 }
             }
 
@@ -63,8 +67,10 @@ class ContactsFragment : Fragment() {
     }
 
 
-    fun addNewContact(newContact:Contact){
-        mContactList?.add(newContact)
-        adapter.notifyDataSetChanged()
+    fun addNewContact(newContact:Contact?){
+        if(newContact!=null) {
+            mContactList?.add(newContact)
+            adapter.notifyDataSetChanged()
+        }
     }
 }

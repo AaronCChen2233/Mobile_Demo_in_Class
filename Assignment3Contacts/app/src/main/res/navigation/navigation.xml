@@ -13,6 +13,15 @@
         <action
             android:id="@+id/action_contactsFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
+        <argument
+            android:name="contact"
+            app:argType="com.derrick.park.assignment3_contacts.models.Contact" />
+        <!--        <argument-->
+<!--            android:name="name"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="phone"-->
+<!--            app:argType="string" />-->
 
     </fragment>
     <fragment

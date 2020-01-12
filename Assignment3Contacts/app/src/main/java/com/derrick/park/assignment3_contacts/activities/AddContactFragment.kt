@@ -36,10 +36,9 @@ class AddContactFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddContactViewModel::class.java)
 
         viewModel.savedContact.observe(this, Observer { playAgain ->
-
-//            val action = AddContactFragmentDirections.actionAddContactFragmentToContactsFragment(playAgain)
-//            action.contact = playAgain
-//            NavHostFragment.findNavController(this).navigate(action)
+            val action = AddContactFragmentDirections.actionAddContactFragmentToContactsFragment(playAgain)
+            action.contact = playAgain
+            NavHostFragment.findNavController(this).navigate(action)
         })
 
         binding.addContactViewModel = viewModel
