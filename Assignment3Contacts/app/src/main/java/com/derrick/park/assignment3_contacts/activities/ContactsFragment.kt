@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.derrick.park.assignment3_contacts.R
 import com.derrick.park.assignment3_contacts.databinding.FragmentContactsBinding
@@ -42,7 +43,20 @@ class ContactsFragment : Fragment() {
         binding.contactsRecyclerView.adapter = adapter
 
         binding.addfloatingActionButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_contactsFragment_to_addContactFragment)
+
+            val contactArray = arrayOfNulls<Contact>(mContactList.size)
+            mContactList.toArray(contactArray)
+
+            val action = ContactsFragmentDirections.actionContactsFragmentToAddContactFragment(contactArray)
+            action.contacts = contactArray
+            NavHostFragment.findNavController(this).navigate(action)
+
+//            it.findNavController().navigate(R.id.action_contactsFragment_to_addContactFragment)
+        }
+
+        val contactArray = arguments?.getParcelableArray("contact")
+        if (contactArray!=null){
+            mContactList = contactArray.toCollection(ArrayList()) as ArrayList<Contact>
         }
 
         if(mContactList.size == 0){
@@ -51,7 +65,7 @@ class ContactsFragment : Fragment() {
             override fun onResponse(call: Call<ContactList>, response: Response<ContactList>) {
                 if (response.isSuccessful) {
                     mContactList.addAll(response.body()!!.contactList)
-                    mContactList.sortWith(compareBy ({ it.name.toString() }))
+                    mContactList.sortWith(compareBy (String.CASE_INSENSITIVE_ORDER, { it.name.toString() }))
                     adapter.submitList(mContactList)
                 }
             }
@@ -60,11 +74,9 @@ class ContactsFragment : Fragment() {
             }
         })}
         else{
-            mContactList.sortWith(compareBy ({ it.name.toString() }))
+            mContactList.sortWith(compareBy (String.CASE_INSENSITIVE_ORDER, { it.name.toString() }))
             adapter.submitList(mContactList)
         }
-        val addcontact = arguments?.getParcelable<Contact>("contact")
-        addNewContact(addcontact)
 
         return binding.root
     }

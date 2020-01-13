@@ -16,7 +16,7 @@
             app:popUpToInclusive="false" />
         <argument
             android:name="contact"
-            app:argType="com.derrick.park.assignment3_contacts.models.Contact" />
+            app:argType="com.derrick.park.assignment3_contacts.models.Contact[]" />
         <!--        <argument-->
 <!--            android:name="name"-->
 <!--            app:argType="string" />-->
@@ -32,5 +32,8 @@
         <action
             android:id="@+id/action_addContactFragment_to_contactsFragment"
             app:destination="@id/contactsFragment"></action>
+        <argument
+            android:name="contacts"
+            app:argType="com.derrick.park.assignment3_contacts.models.Contact[]" />
     </fragment>
 </navigation>
