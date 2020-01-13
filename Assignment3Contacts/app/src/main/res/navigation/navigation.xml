@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_contacts" >
         <action
             android:id="@+id/action_contactsFragment_to_addContactFragment"
-            app:destination="@id/addContactFragment" />
+            app:destination="@id/addContactFragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="contact"
             app:argType="com.derrick.park.assignment3_contacts.models.Contact" />
@@ -30,7 +31,6 @@
         android:label="AddContactFragment" >
         <action
             android:id="@+id/action_addContactFragment_to_contactsFragment"
-            app:destination="@id/contactsFragment" >
-        </action>
+            app:destination="@id/contactsFragment"></action>
     </fragment>
 </navigation>

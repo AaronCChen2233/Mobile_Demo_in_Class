@@ -21,16 +21,15 @@ import retrofit2.Callback
 import retrofit2.Response
 //import java.util.*
 
+const val SAVED_CONTACTS_KEY = "saved_contacts_key"
+
 class ContactsFragment : Fragment() {
-    private var mContactList: ArrayList<Contact>? = null
+    private var mContactList: ArrayList<Contact> = arrayListOf<Contact>()
     private var adapter = ContactAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-        }
+        mContactList = savedInstanceState?.getParcelableArrayList<Contact>(SAVED_CONTACTS_KEY) ?: arrayListOf<Contact>()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -45,31 +44,34 @@ class ContactsFragment : Fragment() {
         binding.addfloatingActionButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_contactsFragment_to_addContactFragment)
         }
-        val call = ContactClient.getContacts(10)
 
+        if(mContactList.size == 0){
+        val call = ContactClient.getContacts(10)
         call.enqueue(object : Callback<ContactList> {
             override fun onResponse(call: Call<ContactList>, response: Response<ContactList>) {
                 if (response.isSuccessful) {
-                    mContactList = response.body()!!.contactList
-
+                    mContactList.addAll(response.body()!!.contactList)
+                    mContactList.sortWith(compareBy ({ it.name.toString() }))
                     adapter.submitList(mContactList)
-
-                    val addcontact = arguments?.getParcelable<Contact>("contact")
-                    addNewContact(addcontact)
                 }
             }
 
             override fun onFailure(call: Call<ContactList>, t: Throwable) { // Error Handling
             }
-        })
+        })}
+        else{
+            mContactList.sortWith(compareBy ({ it.name.toString() }))
+            adapter.submitList(mContactList)
+        }
+        val addcontact = arguments?.getParcelable<Contact>("contact")
+        addNewContact(addcontact)
 
         return binding.root
     }
 
-
     fun addNewContact(newContact:Contact?){
         if(newContact!=null) {
-            mContactList?.add(newContact)
+            mContactList.add(newContact)
             adapter.notifyDataSetChanged()
         }
     }
