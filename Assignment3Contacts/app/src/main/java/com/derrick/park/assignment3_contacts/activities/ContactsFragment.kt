@@ -6,20 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.navArgs
+import com.android.jmaxime.adapters.RecyclerAdapter
+import com.android.jmaxime.adapters.decorators.SectionedAdapter
 import com.derrick.park.assignment3_contacts.R
 import com.derrick.park.assignment3_contacts.databinding.FragmentContactsBinding
 import com.derrick.park.assignment3_contacts.models.Contact
 import com.derrick.park.assignment3_contacts.models.ContactList
 import com.derrick.park.assignment3_contacts.network.ContactClient
-import com.derrick.park.assignment3_contacts.viewmodels.AddContactViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+
 //import java.util.*
 
 const val SAVED_CONTACTS_KEY = "saved_contacts_key"
@@ -50,8 +49,6 @@ class ContactsFragment : Fragment() {
             val action = ContactsFragmentDirections.actionContactsFragmentToAddContactFragment(contactArray)
             action.contacts = contactArray
             NavHostFragment.findNavController(this).navigate(action)
-
-//            it.findNavController().navigate(R.id.action_contactsFragment_to_addContactFragment)
         }
 
         val contactArray = arguments?.getParcelableArray("contact")
@@ -65,8 +62,7 @@ class ContactsFragment : Fragment() {
             override fun onResponse(call: Call<ContactList>, response: Response<ContactList>) {
                 if (response.isSuccessful) {
                     mContactList.addAll(response.body()!!.contactList)
-                    mContactList.sortWith(compareBy (String.CASE_INSENSITIVE_ORDER, { it.name.toString() }))
-                    adapter.submitList(mContactList)
+                    adapter.addHeaderAndSubmitList(mContactList)
                 }
             }
 
@@ -74,17 +70,16 @@ class ContactsFragment : Fragment() {
             }
         })}
         else{
-            mContactList.sortWith(compareBy (String.CASE_INSENSITIVE_ORDER, { it.name.toString() }))
-            adapter.submitList(mContactList)
+            adapter.addHeaderAndSubmitList(mContactList)
         }
 
         return binding.root
     }
 
-    fun addNewContact(newContact:Contact?){
-        if(newContact!=null) {
-            mContactList.add(newContact)
-            adapter.notifyDataSetChanged()
-        }
-    }
+//    fun addNewContact(newContact:Contact?){
+//        if(newContact!=null) {
+//            mContactList.add(newContact)
+//            adapter.notifyDataSetChanged()
+//        }
+//    }
 }

@@ -59,6 +59,6 @@ dependencies {
     // Retrofit & Gson
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$version_retrofit"
-
+    implementation "com.github.maximejallu:adapters:1.10.6"
 //    implementation 'com.android.support:design:28.1.0'
 }
