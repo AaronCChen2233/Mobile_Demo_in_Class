@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.derrick.park.assignment3_contacts.factorys.AddContactViewModelFactory
 import com.derrick.park.assignment3_contacts.R
 import com.derrick.park.assignment3_contacts.viewmodels.AddContactViewModel
@@ -22,14 +21,7 @@ class AddContactFragment : Fragment() {
 
     private lateinit var viewModel: AddContactViewModel
     private lateinit var viewModelFactory: AddContactViewModelFactory
-    private var mContactList: ArrayList<Contact> = arrayListOf<Contact>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
+    private var mContactList: ArrayList<Contact> = arrayListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -57,7 +49,6 @@ class AddContactFragment : Fragment() {
         if (contactArray!=null){
             mContactList = contactArray.toCollection(ArrayList()) as ArrayList<Contact>
         }
-
 
         binding.addContactViewModel = viewModel
         binding.setLifecycleOwner(this)

@@ -25,6 +25,8 @@
                 android:clickable="true"
                 android:layout_gravity="end|bottom"
                 app:srcCompat="@android:drawable/ic_input_add"
+                android:layout_marginBottom="15sp"
+                android:layout_marginRight="15sp"
                 android:focusable="true" />
 
         </FrameLayout>

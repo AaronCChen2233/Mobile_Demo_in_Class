@@ -24,7 +24,7 @@ import retrofit2.Response
 const val SAVED_CONTACTS_KEY = "saved_contacts_key"
 
 class ContactsFragment : Fragment() {
-    private var mContactList: ArrayList<Contact> = arrayListOf<Contact>()
+    private var mContactList: ArrayList<Contact> = arrayListOf()
     private var adapter = ContactAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,6 @@ class ContactsFragment : Fragment() {
         binding.contactsRecyclerView.adapter = adapter
 
         binding.addfloatingActionButton.setOnClickListener {
-
             val contactArray = arrayOfNulls<Contact>(mContactList.size)
             mContactList.toArray(contactArray)
 
