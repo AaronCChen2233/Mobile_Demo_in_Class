@@ -32,7 +32,7 @@
         <action
             android:id="@+id/action_addContactFragment_to_contactsFragment"
             app:destination="@id/contactsFragment"
-            app:popUpTo="@+id/addContactFragment"
+            app:popUpTo="@+id/contactsFragment"
             app:popUpToInclusive="true"></action>
         <argument
             android:name="contacts"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.android.jmaxime.adapters.RecyclerAdapter
 import com.android.jmaxime.adapters.decorators.SectionedAdapter
 import com.derrick.park.assignment3_contacts.R
@@ -47,7 +48,7 @@ class ContactsFragment : Fragment() {
 
             val action = ContactsFragmentDirections.actionContactsFragmentToAddContactFragment(contactArray)
             action.contacts = contactArray
-            NavHostFragment.findNavController(this).navigate(action)
+            this.findNavController().navigate(action)
         }
 
         val contactArray = arguments?.getParcelableArray("contact")
