@@ -65,8 +65,7 @@ class SleepTrackerFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.sleepTrackerViewModel = sleepTrackerViewModel
 
-        sleepTrackerViewModel.navigateToSleepQuality.observe(this, Observer {
-            night ->
+        sleepTrackerViewModel.navigateToSleepQuality.observe(this, Observer { night ->
             night?.let {
                 this.findNavController().navigate(
                         SleepTrackerFragmentDirections
@@ -110,7 +109,7 @@ class SleepTrackerFragment : Fragment() {
         val manager = GridLayoutManager(activity, 3)
 
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int) =  when (position) {
+            override fun getSpanSize(position: Int) = when (position) {
                 0 -> 3
                 else -> 1
             }
