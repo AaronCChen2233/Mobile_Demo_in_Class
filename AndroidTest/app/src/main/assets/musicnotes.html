@@ -8,20 +8,15 @@
 <div id="boo"></div>
 <script src="vexflow-min.js"></script>
 <script type="text/javascript">
-musictest("e/4")
 
-function test(){
-  return "test"
-}
+// musictest("e/4")
+Drawmusicnotes()
 
 function musictest(notstr){
   VF = Vex.Flow;
-
 // Create an SVG renderer and attach it to the DIV element named "boo".
-var newDiv = document.createElement("div"); 
 var div = document.getElementById("boo")
-var renderer = new VF.Renderer(newDiv, VF.Renderer.Backends.SVG);
-div.appendChild(newDiv);  
+var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 // Configure the rendering context.
 renderer.resize(500, 110);
 var context = renderer.getContext();
@@ -38,8 +33,7 @@ stave.setContext(context).draw();
 
 var notes = [
   new VF.StaveNote({clef: "treble", keys: [notstr], duration: "8d" })
-      // .addAccidental(0, new VF.Accidental("##")).addDotToAll()
-      ,
+      .addAccidental(0, new VF.Accidental("##")).addDotToAll(),
   new VF.StaveNote({clef: "treble", keys: ["b/4"], duration: "16" }).
       addAccidental(0, new VF.Accidental("b")),
   new VF.StaveNote({clef: "treble", keys: ["g/3"], duration: "8" }),
@@ -68,6 +62,29 @@ var ties = [
 ties.forEach(function(t) {t.setContext(context).draw()})
 }
 
+
+function Drawmusicnotes(barjson){
+  barjson = '{"duration":"8d","key":"c/4"}'
+  var obj = JSON.parse(barjson);
+
+    VF = Vex.Flow;
+    var div = document.getElementById("boo")
+    var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+    renderer.resize(500, 110);
+    var context = renderer.getContext();
+    var stave = new VF.Stave(10, 0, 300);
+    stave.addClef("treble").addTimeSignature("4/4")//.addKeySignature('B');
+    stave.setContext(context).draw();
+
+    var notes = [
+    new VF.StaveNote({keys: [obj.key], duration: obj.duration })
+];
+
+var beams = VF.Beam.generateBeams(notes);
+VF.Formatter.FormatAndDraw(context, stave, notes);
+beams.forEach(function(b) {b.setContext(context).draw()})
+
+}
 // function musictest(){
 // VF = Vex.Flow;
 

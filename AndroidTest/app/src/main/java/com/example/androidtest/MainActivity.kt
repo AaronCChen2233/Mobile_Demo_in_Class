@@ -1,21 +1,13 @@
 package com.example.androidtest
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.AttributeSet
 import android.view.View
-import android.webkit.ValueCallback
 import android.webkit.WebView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.w3c.dom.Document
 import java.io.InputStream
-import java.io.InputStreamReader
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 
@@ -24,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
     val myHandler = Handler()
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,8 +26,9 @@ class MainActivity : AppCompatActivity() {
         settings.javaScriptEnabled = true
         settings.allowFileAccess = true
         settings.domStorageEnabled = true
-
-        browser.loadUrl("file:///android_asset/musictest.html")
+        val repeated =
+            String.format(String.format("%%0%dd", 80000), 0).replace("0", ".") + "xx"
+        browser.loadUrl("file:///android_asset/musicnotes.html")
         val str ="e/4"
         browser.post {
             run {
